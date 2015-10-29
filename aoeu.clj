@@ -7,6 +7,8 @@
 (def set2 (s/difference set0 (s/int-set a)))
   
 (s/union set1 set2)
+(s/union (disj set1 0)
+         set2)
 
 (defn -main []
   (println "I compiled successfully"))

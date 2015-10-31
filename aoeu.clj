@@ -1,14 +1,17 @@
 (ns aoeu
-  (:require [clojure.data.int-map :as s]))
+  (:require [clojure.data.int-map :as i]
+            [clojure.set :as s]))
 
-(def a [1 139])
-(def set0 (s/int-set a))
-(def set1 (s/int-set [0]))
-(def set2 (s/difference set0 (s/int-set a)))
-  
-(s/union set1 set2)
-(s/union (disj set1 0)
-         set2)
+(defn diff-equals? [set0 set1]
+  (println (= (i/difference (i/int-set set0) 
+                            (i/int-set set1))
+              
+              (s/difference set0 
+                            set1))))
 
-(defn -main []
-  (println "I compiled successfully"))
+(diff-equals? #{180 360 871 2167} #{180})
+(diff-equals? #{180 360 871 2167} #{180 360})
+(diff-equals? #{180 360 871 2167} #{180 360 871})
+(diff-equals? #{180 360 871 2167} #{180 360 2167})
+
+(defn -main [])
